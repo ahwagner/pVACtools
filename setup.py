@@ -92,7 +92,10 @@ setup(
         "Programming Language :: Python :: 3.5"
     ],
 
-    author = "Jasreet Hundal, Susanna Kiwala, Joshua McMichael, Yang-Yang Feng, Christopher A. Miller, Aaron Graubert, Amber Wollam, Connor Liu, Jonas Neichin, Megan Neveau, Jason Walker, Elaine R. Mardis, Obi L. Griffith, Malachi Griffith",
+    author = "Jasreet Hundal, Susanna Kiwala, Joshua McMichael, Alex Wagner, "
+             "Yang-Yang Feng, Christopher A. Miller, Aaron Graubert, Amber Wollam, "
+             "Connor Liu, Jonas Neichin, Megan Neveau, Jason Walker, Elaine R. Mardis, "
+             "Obi L. Griffith, Malachi Griffith",
     author_email = "help@pvactools.org",
     description = "A cancer immunotherapy tools suite",
     license = "NPOSL-3.0",
