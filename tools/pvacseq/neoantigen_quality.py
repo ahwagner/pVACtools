@@ -1,7 +1,8 @@
 """
 Created on Jul 26, 2017
 
-Marta Luksza, mluksza@ias.edu
+Originally authored by Marta Luksza, mluksza@ias.edu
+Adapted by Alex Wagner, awagner24@wustl.edu
 """
 
 from Bio.Blast import NCBIXML
@@ -54,31 +55,30 @@ class Aligner(object):
         compute alignment scores,
         find the highest scoring alignment for each neoantigen.
         """
-        f = open(xmlpath)
-        blast_records = NCBIXML.parse(f)
-        maxscore = {}
-        try:
-            for brecord in blast_records:
-                nid = int(str(brecord.query).split("_")[1])
-                for alignment in brecord.alignments:
-                    if not nid in self.alignments:
-                        self.alignments[nid] = {}
-                        self.maximum_alignment[nid] = None
-                        self.maximum_alignment[nid] = 0
-                        maxscore[nid] = 0
-                    species = " ".join((str(alignment).split())[1:-3])
-                    for hsp in alignment.hsps:
-                        if not "-" in hsp.query and not "-" in hsp.sbjct:
-                            al = Aligner.align(hsp.query, hsp.sbjct)
-                            if len(al) > 0:
-                                al = al[0]
-                                self.alignments[nid][species] = al
-                                if al[2] > maxscore[nid]:
-                                    self.maximum_alignment[nid] = species
-                                    maxscore[nid] = al[2]
-        except ValueError:
-            pass
-        f.close()
+        with open(xmlpath, 'r') as f:
+            blast_records = NCBIXML.parse(f)
+            maxscore = {}
+            try:
+                for brecord in blast_records:
+                    nid = int(str(brecord.query).split("_")[1])
+                    for alignment in brecord.alignments:
+                        if not nid in self.alignments:
+                            self.alignments[nid] = {}
+                            self.maximum_alignment[nid] = None
+                            self.maximum_alignment[nid] = 0
+                            maxscore[nid] = 0
+                        species = " ".join((str(alignment).split())[1:-3])
+                        for hsp in alignment.hsps:
+                            if not "-" in hsp.query and not "-" in hsp.sbjct:
+                                al = Aligner.align(hsp.query, hsp.sbjct)
+                                if len(al) > 0:
+                                    al = al[0]
+                                    self.alignments[nid][species] = al
+                                    if al[2] > maxscore[nid]:
+                                        self.maximum_alignment[nid] = species
+                                        maxscore[nid] = al[2]
+            except ValueError:
+                pass
 
     def computeR(self, a=26, k=1):
         """
