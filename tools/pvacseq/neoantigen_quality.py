@@ -1,8 +1,6 @@
 """
-Created on Jul 26, 2017
-
-Originally authored by Marta Luksza, mluksza@ias.edu
-Source code from:
+Created on Jul 26, 2017 by Marta Luksza, mluksza@ias.edu
+Source code from Balachandran, et al. 2017. Nature. https://rdcu.be/NZt7
 Adapted by Alex Wagner, awagner24@wustl.edu
 """
 
