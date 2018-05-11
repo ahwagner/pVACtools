@@ -2,6 +2,7 @@
 Created on Jul 26, 2017
 
 Originally authored by Marta Luksza, mluksza@ias.edu
+Source code from:
 Adapted by Alex Wagner, awagner24@wustl.edu
 """
 
@@ -64,7 +65,6 @@ class Aligner(object):
                     for alignment in brecord.alignments:
                         if not nid in self.alignments:
                             self.alignments[nid] = {}
-                            self.maximum_alignment[nid] = None
                             self.maximum_alignment[nid] = 0
                             maxscore[nid] = 0
                         species = " ".join((str(alignment).split())[1:-3])
@@ -77,7 +77,7 @@ class Aligner(object):
                                     if al[2] > maxscore[nid]:
                                         self.maximum_alignment[nid] = species
                                         maxscore[nid] = al[2]
-            except ValueError:
+            except ValueError:  # TODO: Figure out where this is happening and handle more elegantly.
                 pass
 
     def computeR(self, a=26, k=1):
